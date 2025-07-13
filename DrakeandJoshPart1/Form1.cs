@@ -62,7 +62,7 @@ namespace DrakeandJoshPart1
             { "Bruce Wincil", new NPCCharacter("Bruce Wincil", 100) }, //Walters nemisis
             { "Oprah", new NPCCharacter("Oprah", 100) },
             { "The Great Henry Doheny", new NPCCharacter("The Great Henry Doheny", 100) }, //Joshes favorite magician
-            { "Clayton", new NPCCharacter("Clayton", 100) }, //Retarded kid in class
+            { "Clayton", new NPCCharacter("Clayton", 100) }, //Classmate
             { "Bludge", new NPCCharacter("Bludge", 100) }, //Prison breaker turned ally.
             { "Dr. Adrian G. Favershim", new NPCCharacter("Dr. Adrian G. Favershim", 100) }, //Cooks animals and eats them.
             { "Papa Nicoles", new NPCCharacter("Papa Nicoles", 100) },
@@ -81,7 +81,7 @@ namespace DrakeandJoshPart1
             { "Rina ", new NPCCharacter("Rina", 100) }, //Memeber of drakes band
             { "Vince ", new NPCCharacter("Vince", 100) }, //pilot instructor
             { "Sergeant Doty ", new NPCCharacter("Sergeant Doty", 100) }, //responds with his partner to investigate stolen furniture.
-            { "Robbie", new NPCCharacter("Robbie ", 100) }, //gay next door neighbor.
+            { "Robbie", new NPCCharacter("Robbie ", 100) }, //Next door neighbor
             { "Jerry", new NPCCharacter("Jerry  ", 100) }, //Josh's look-a-like.
             { "Drew", new NPCCharacter("Drew ", 100) }, //Drake's look-a-like.
             { "Carly", new NPCCharacter("Carly", 100) }, //Drake's girl friend..
