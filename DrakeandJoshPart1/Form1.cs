@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace DrakeandJoshPart1
@@ -31,12 +32,37 @@ namespace DrakeandJoshPart1
         PlayerTurn_1,
         Round_1,
         EnemyTurn_1,
+        Victory,
+        Defeat,
         Credits,
         Exit
     }
     private GamePhase currentPhase = GamePhase.MainMenu; // create a variable for the current game phase.
     string titleArt = AsciiArtBank.GetTitleArt(); // create a variable for the title art.
     private List<Character> nearbyNPCs = new List<Character>(); // create a list for nearby NPCs.
+
+    private void ResetGame()
+    {
+        player = null;
+        cast = null;
+        currentEnemy = null;
+        nearbyNPCs.Clear();
+
+        statTextBox.Clear();
+        readTextBox.Clear();
+        writeTextBox.Clear();
+
+        currentPhase = GamePhase.MainMenu;
+
+        statTextBox.Text = titleArt;
+        statTextBox.Font = new Font("Consolas", 8);
+        statTextBox.WordWrap = false;
+
+        readTextBox.AppendText("Drake and Josh's Really Big Text Adventure!" + Environment.NewLine);
+        readTextBox.AppendText("[1] Play" + Environment.NewLine);
+        readTextBox.AppendText("[2] Credits" + Environment.NewLine);
+        readTextBox.AppendText("[X] Exit" + Environment.NewLine);
+    }
     public Form1() // Constructor.
     {
         InitializeComponent();
@@ -144,11 +170,7 @@ namespace DrakeandJoshPart1
         public void TakeDamage(int damage) //method to take damage to the player's health.
         {
             Health -= damage;
-            if (Health <= 0)
-            {
-                MessageBox.Show("You have been knocked out and wake up in the hospital. Game over.", "Game Over");
-                Application.Exit();
-            }
+            if (Health < 0) Health = 0;
         }
 
         public void Heal(int amount) // Method to heal the player.
@@ -459,15 +481,34 @@ namespace DrakeandJoshPart1
                     return;
                     
                     case GamePhase.Round_1: // This is where the combat action happens.
-                        
-                    
+
                     if (input == "1" || input == "2" || input == "3")
                     {
                         playersTurn(int.Parse(input));
+
+                        if (currentEnemy.Health <= 0)
+                        {
+                            MessageBox.Show($"You defeated {currentEnemy.Name}!", "Victory");
+                            currentPhase = GamePhase.Victory;
+                            ResetGame();
+                            return;
+                        }
+
+                        currentPhase = GamePhase.EnemyTurn_1;
+                        int enemyChoice = new Random().Next(1, 4);
+                        EnemyTakesTurn(enemyChoice);
+
+                        if (player.Health <= 0)
+                        {
+                            MessageBox.Show("You have been defeated!", "Defeat");
+                            currentPhase = GamePhase.Defeat;
+                            ResetGame();
+                            return;
+                        }
+
+                        currentPhase = GamePhase.PlayerTurn_1;
                     }
 
-
-                
                     return;
 
         }
